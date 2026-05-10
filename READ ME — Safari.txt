@@ -1,0 +1,69 @@
+Subtitler — Run in Safari (macOS)
+==================================
+
+You CANNOT just double-click index.html. Safari (like every modern browser)
+blocks the things this app needs — Web Workers, ES modules, fetch — when a
+page is opened directly via file://. The page will appear blank.
+
+The fix is to serve the folder over http://localhost using Python, which
+comes preinstalled on macOS. It takes 30 seconds.
+
+
+STEP-BY-STEP
+------------
+
+1. Open Terminal.
+   - Press Cmd+Space, type "Terminal", press Enter.
+
+2. Start the local server. Copy and paste this single line:
+
+       cd ~/Downloads/Subtitler && python3 -m http.server 8765
+
+   - Adjust the path (~/Downloads/Subtitler) if you unzipped somewhere else.
+   - You should see: "Serving HTTP on :: port 8765 (http://[::]:8765/) ..."
+   - LEAVE THIS TERMINAL WINDOW OPEN. Closing it stops the server.
+
+3. Open Safari and paste this into the address bar:
+
+       http://localhost:8765/index.html
+
+4. Use the app. When you're done for the day, return to Terminal and press
+   Control+C to stop the server.
+
+
+REOPENING LATER
+---------------
+
+You only need to redo step 2-3 when you've closed the Terminal window or
+restarted your Mac. While the Terminal window stays open, you can close
+Safari and reopen the URL freely — the server keeps running.
+
+
+SAFARI-SPECIFIC TIPS
+--------------------
+
+- Hard refresh (clears cached JS): hold Option+Cmd and click Reload, or use
+  Cmd+Option+E to empty caches, then Cmd+R to reload.
+
+- If you see "failed to call OrtRun(). error code = 6" on a long file,
+  Safari's per-tab memory limit (~2 GB) is being exceeded by the Whisper
+  Small model. Switch to "Base · English-only" in Settings — it handles
+  hour-long files comfortably with effectively the same accuracy on clear
+  English speech. Or try Chrome, which has a ~4 GB per-tab budget.
+
+- Safari sometimes prompts for microphone/camera access. The app doesn't
+  use either — just dismiss the prompt.
+
+
+REQUIREMENTS
+------------
+
+- macOS with Python 3 (preinstalled since macOS 12.3).
+- Or, if "python3: command not found", run: xcode-select --install
+
+
+ONLINE ALTERNATIVE
+------------------
+
+The hosted version works in any browser without setup:
+   https://www.perplexity.ai/computer/a/subtitler-a73pG517TiSQiCX_lb0bxg
