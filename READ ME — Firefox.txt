@@ -1,95 +1,61 @@
 Subtitler — Run in Firefox (macOS / Windows / Linux)
 =====================================================
 
-You CANNOT just double-click index.html. Firefox (like every modern browser)
-blocks the things this app needs — Web Workers, ES modules, fetch — when a
-page is opened directly via file://. The page will appear blank.
-
-The fix is to serve the folder over http://localhost using Python. It takes
-30 seconds.
+You CANNOT just double-click index.html. Firefox blocks the things this app
+needs (Web Workers, ES modules, fetch) when a page is opened directly via
+file://. The page will appear blank.
 
 
 STEP-BY-STEP — macOS / Linux
 ----------------------------
 
 1. Open Terminal.
-   - macOS: Cmd+Space, type "Terminal", press Enter.
-   - Linux: Ctrl+Alt+T.
 
-2. Start the local server. Copy and paste this single line:
+2. Paste:
 
        cd ~/Downloads/Subtitler && python3 -m http.server 8765
 
-   - Adjust the path if you unzipped somewhere else.
-   - You should see: "Serving HTTP on :: port 8765 (http://[::]:8765/) ..."
-   - LEAVE THIS TERMINAL WINDOW OPEN. Closing it stops the server.
+   - LEAVE THIS WINDOW OPEN.
 
-3. Open Firefox and paste this into the address bar:
+3. In Firefox:
 
        http://localhost:8765/index.html
-
-4. Use the app. When you're done, return to Terminal and press Control+C
-   to stop the server.
 
 
 STEP-BY-STEP — Windows
 ----------------------
 
-1. Open Command Prompt (Win+R, type "cmd", press Enter).
+1. Win+R → "cmd".
 
-2. Start the server:
+2. Paste:
 
        cd %USERPROFILE%\Downloads\Subtitler
        python -m http.server 8765
 
-   - If you don't have Python: install from https://www.python.org/downloads/
-     and re-open the prompt.
-
-3. Open Firefox and paste:
+3. In Firefox:
 
        http://localhost:8765/index.html
-
-
-REOPENING LATER
----------------
-
-You only need to redo the steps above when you've closed the Terminal window
-or restarted your computer. While the server is running, you can close and
-reopen Firefox freely.
 
 
 FIREFOX-SPECIFIC TIPS
 ---------------------
 
-- Hard refresh (clears cached JS): Cmd+Shift+R on macOS, Ctrl+Shift+R on
-  Windows/Linux. Or hold Shift while clicking the Reload button.
+- Hard refresh: Cmd+Shift+R (macOS), Ctrl+Shift+R (Windows/Linux).
 
-- Firefox's per-tab memory limit is ~3 GB on desktop — between Safari (~2 GB)
-  and Chrome (~4 GB). The Whisper Small model on hour-long files usually
-  works thanks to the chunking built into the app, but if you hit memory
-  errors, switch to "Base · English-only" in Settings.
+- Firefox's per-tab memory limit is ~3 GB — between Safari (~2 GB) and
+  Chrome (~4 GB). For long files on Small, prefer Chrome.
 
-- If WASM feels slow, check about:config and ensure "javascript.options.wasm"
-  is true (it is by default). Firefox's WASM JIT is excellent — performance
-  should be similar to Chrome.
-
-- Firefox's strict tracking protection may block some hosted-version
-  features (like fonts.googleapis.com). For the LOCAL version this doesn't
-  matter — everything is loaded from your own machine.
+- Firefox's strict tracking protection doesn't affect the local version.
 
 
 REQUIREMENTS
 ------------
 
 - Python 3.
-- macOS: preinstalled.
-- Windows: install from python.org (check "Add Python to PATH" during install).
-- Linux: usually preinstalled; otherwise: sudo apt install python3
 
 
 ONLINE ALTERNATIVES
 -------------------
 
-The hosted versions work without any setup:
    https://vmontmorency.github.io/subtitler/
    https://www.perplexity.ai/computer/a/subtitler-a73pG517TiSQiCX_lb0bxg

@@ -6,90 +6,55 @@ blocks the things this app needs — Web Workers, ES modules, fetch — when a
 page is opened directly via file://. The page will appear blank, and the
 address bar will show "File /Users/.../index.html" instead of an http URL.
 
-The fix is to serve the folder over http://localhost using Python. It
-takes 30 seconds.
-
 
 STEP-BY-STEP — macOS / Linux
 ----------------------------
 
-1. Open Terminal.
-   - macOS: Cmd+Space, type "Terminal", press Enter.
-   - Linux: Ctrl+Alt+T (most distros).
+1. Open Terminal (Cmd+Space → "Terminal" on macOS; Ctrl+Alt+T on Linux).
 
-2. Start the local server. Copy and paste this single line:
+2. Paste this:
 
        cd ~/Downloads/Subtitler && python3 -m http.server 8765
 
-   - Adjust the path if you unzipped somewhere else.
-   - You should see: "Serving HTTP on :: port 8765 (http://[::]:8765/) ..."
-   - LEAVE THIS TERMINAL WINDOW OPEN. Closing it stops the server.
+   - LEAVE THIS WINDOW OPEN.
 
-3. Open Chrome and paste this into the address bar:
+3. In Chrome, paste:
 
        http://localhost:8765/index.html
-
-4. Use the app. When you're done, return to Terminal and press Control+C
-   to stop the server.
 
 
 STEP-BY-STEP — Windows
 ----------------------
 
-1. Open Command Prompt or PowerShell (Win+R, type "cmd", press Enter).
+1. Win+R, type "cmd", press Enter.
 
-2. Start the server:
+2. Paste:
 
        cd %USERPROFILE%\Downloads\Subtitler
        python -m http.server 8765
 
-   - If you don't have Python: install from https://www.python.org/downloads/
-     and re-open the prompt.
-   - LEAVE THIS WINDOW OPEN.
-
-3. Open Chrome and paste:
+3. In Chrome:
 
        http://localhost:8765/index.html
-
-
-REOPENING LATER
----------------
-
-You only need to redo the steps above when you've closed the Terminal window
-or restarted your computer. While the server is running, you can close and
-reopen Chrome freely.
 
 
 CHROME-SPECIFIC TIPS
 --------------------
 
-- Hard refresh (clears cached JS): Cmd+Shift+R on macOS, Ctrl+Shift+R on
-  Windows/Linux. Or open DevTools (F12), right-click Reload, choose
-  "Empty Cache and Hard Reload".
+- Hard refresh: Cmd+Shift+R (macOS), Ctrl+Shift+R (Windows/Linux).
 
-- Chrome's per-tab memory limit is ~4 GB on desktop, which means it handles
-  the Whisper Small model on hour-long files better than Safari does. If
-  you're hitting OOM errors in Safari, try Chrome.
-
-- If transcription is slow, close other tabs. ONNX Runtime competes with
-  them for the V8 heap.
-
-- Chrome may show a "Translate this page?" prompt because index.html
-  contains words in many languages (the language list). Just dismiss it.
+- Chrome's per-tab memory limit is ~4 GB — the best for the Whisper Small
+  model on hour-long files. If still seeing OrtRun errors, switch to Base.
 
 
 REQUIREMENTS
 ------------
 
-- Python 3.
-- macOS: preinstalled.
-- Windows: install from python.org (check "Add Python to PATH" during install).
-- Linux: usually preinstalled; otherwise: sudo apt install python3
+- Python 3 (preinstalled on macOS; install from python.org on Windows).
 
 
 ONLINE ALTERNATIVES
 -------------------
 
-The hosted versions work without any setup:
    https://vmontmorency.github.io/subtitler/
    https://www.perplexity.ai/computer/a/subtitler-a73pG517TiSQiCX_lb0bxg
