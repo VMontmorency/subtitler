@@ -87,8 +87,9 @@ REQUIREMENTS
 - Linux: usually preinstalled; otherwise: sudo apt install python3
 
 
-ONLINE ALTERNATIVE
-------------------
+ONLINE ALTERNATIVES
+-------------------
 
-The hosted version works without any setup:
+The hosted versions work without any setup:
+   https://vmontmorency.github.io/subtitler/
    https://www.perplexity.ai/computer/a/subtitler-a73pG517TiSQiCX_lb0bxg

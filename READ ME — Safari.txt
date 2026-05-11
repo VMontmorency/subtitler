@@ -62,8 +62,9 @@ REQUIREMENTS
 - Or, if "python3: command not found", run: xcode-select --install
 
 
-ONLINE ALTERNATIVE
-------------------
+ONLINE ALTERNATIVES
+-------------------
 
-The hosted version works in any browser without setup:
+The hosted versions work in any browser without setup:
+   https://vmontmorency.github.io/subtitler/
    https://www.perplexity.ai/computer/a/subtitler-a73pG517TiSQiCX_lb0bxg
